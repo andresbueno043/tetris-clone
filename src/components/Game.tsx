@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from '@/components/Menu';
+import useGameOver from '@/hooks/useGameOver';
 
 type Props = {
   rows: number;
@@ -7,8 +8,11 @@ type Props = {
 };
 
 function Game({ rows, cols }: Props) {
+  const [gameOver, setGameOver, resetGameOver] = useGameOver();
+
   const start = () => {
-    console.log('Start');
+    resetGameOver();
+    console.log(`${rows} ${cols} ${gameOver}`);
   };
 
   return (
