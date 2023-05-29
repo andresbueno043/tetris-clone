@@ -1,4 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import Board from './Board';
+import useBoard from '@/hooks/useBoard';
 
 type Props = {
   rows: number;
@@ -7,7 +9,9 @@ type Props = {
 };
 
 function Tetris({ rows, cols, setGameOver }: Props) {
-  return <div className="relative">Tetris</div>;
+  const [board] = useBoard({ rows, cols });
+
+  return <Board board={board} />;
 }
 
 export default Tetris;
