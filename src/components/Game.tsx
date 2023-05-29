@@ -1,6 +1,6 @@
-import React from 'react';
 import Menu from '@/components/Menu';
 import useGameOver from '@/hooks/useGameOver';
+import Tetris from '@/components/Tetris';
 
 type Props = {
   rows: number;
@@ -10,14 +10,15 @@ type Props = {
 function Game({ rows, cols }: Props) {
   const [gameOver, setGameOver, resetGameOver] = useGameOver();
 
-  const start = () => {
-    resetGameOver();
-    console.log(`${rows} ${cols} ${gameOver}`);
-  };
+  const start = () => resetGameOver();
 
   return (
     <div>
-      <Menu onClick={start} />
+      {gameOver ? (
+        <Menu onClick={start} />
+      ) : (
+        <Tetris rows={rows} cols={cols} setGameOver={setGameOver} />
+      )}
     </div>
   );
 }
